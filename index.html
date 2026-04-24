@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#234078" />
-  <title>AYDA · TELC A2 Schreiben Teil 1 Kelime Oyunu</title>
+  <title>AYDA · A2 Schreiben Çalışma Alanı</title>
   <style>
     :root {
       --primary: #234078;
@@ -14,15 +14,15 @@
       --card: #ffffff;
       --text: #172033;
       --muted: #6b7280;
-      --success: #15803d;
-      --danger: #b91c1c;
-      --warning: #b45309;
       --border: #e5e7eb;
+      --danger: #b91c1c;
       --shadow: 0 18px 45px rgba(35, 64, 120, 0.13);
-      --radius: 22px;
+      --radius: 24px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -34,7 +34,14 @@
       min-height: 100vh;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
 
     .login-screen {
       min-height: 100vh;
@@ -44,7 +51,7 @@
     }
 
     .login-card {
-      width: min(500px, 100%);
+      width: min(520px, 100%);
       background: white;
       border: 1px solid var(--border);
       border-radius: 30px;
@@ -53,7 +60,7 @@
       text-align: center;
     }
 
-    .login-logo {
+    .logo {
       width: 78px;
       height: 78px;
       border-radius: 24px;
@@ -81,10 +88,59 @@
       margin: 14px 0 20px;
     }
 
+    input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-size: 18px;
+      outline: none;
+      transition: 0.2s;
+      background: white;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(35, 64, 120, 0.1);
+    }
+
+    button, .btn {
+      border: 0;
+      background: var(--primary);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    button:hover, .btn:hover {
+      transform: translateY(-1px);
+      background: var(--primary-dark);
+    }
+
     .login-row {
       display: grid;
       gap: 10px;
       margin-top: 14px;
+    }
+
+    .error {
+      display: none;
+      margin-top: 14px;
+      background: #fee2e2;
+      color: var(--danger);
+      border-radius: 16px;
+      padding: 13px 15px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .error.show {
+      display: block;
     }
 
     .login-help {
@@ -97,11 +153,15 @@
 
     .login-help a {
       color: var(--primary);
-      font-weight: 800;
+      font-weight: 850;
+    }
+
+    .app {
+      min-height: 100vh;
     }
 
     .topbar {
-      width: min(1160px, calc(100% - 28px));
+      width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
       padding: 14px 0 0;
       display: flex;
@@ -148,10 +208,17 @@
       box-shadow: 0 8px 22px rgba(17, 24, 39, 0.05);
     }
 
-    .contact-link:hover { background: var(--primary-soft); }
+    .contact-link:hover {
+      background: var(--primary-soft);
+    }
+
+    .logout {
+      background: #fee2e2;
+      color: var(--danger);
+    }
 
     .page {
-      width: min(1160px, calc(100% - 28px));
+      width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
       padding: 18px 0 42px;
     }
@@ -160,7 +227,7 @@
       background: linear-gradient(135deg, var(--primary), #315caa);
       border-radius: 30px;
       color: white;
-      padding: 30px;
+      padding: 32px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
@@ -177,7 +244,7 @@
       background: rgba(255, 255, 255, 0.12);
     }
 
-    .brand {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -201,368 +268,162 @@
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(28px, 5vw, 48px);
+      font-size: clamp(30px, 5vw, 52px);
       line-height: 1.05;
       letter-spacing: -0.04em;
-      max-width: 840px;
+      max-width: 820px;
       position: relative;
       z-index: 2;
     }
 
     .hero p {
-      max-width: 860px;
+      max-width: 850px;
       margin: 16px 0 0;
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 17px;
-      line-height: 1.6;
+      line-height: 1.65;
       position: relative;
       z-index: 2;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: white;
-      border-radius: 999px;
-      padding: 11px 14px;
-      font-weight: 850;
-      font-size: 14px;
-    }
-
-    .stats {
+    .menu-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin: 20px 0;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.06);
-    }
-
-    .stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .stat strong {
-      font-size: 28px;
-      color: var(--primary);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
-      align-items: start;
+      margin-top: 22px;
     }
 
-    .card {
-      background: var(--card);
+    .menu-card {
+      background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 26px;
       box-shadow: 0 14px 35px rgba(17, 24, 39, 0.07);
+      transition: 0.22s ease;
+      min-height: 260px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
     }
 
-    .game-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: center;
-      margin-bottom: 18px;
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 42px rgba(35, 64, 120, 0.16);
+      border-color: rgba(35, 64, 120, 0.25);
     }
 
-    .mode-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    button, .pill {
-      border: 0;
-      background: var(--primary);
-      color: white;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: 0.2s ease;
-      font-size: 14px;
-    }
-
-    button:hover, .pill:hover {
-      transform: translateY(-1px);
-      background: var(--primary-dark);
-    }
-
-    .pill {
+    .icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
       background: var(--primary-soft);
       color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      margin-bottom: 12px;
     }
 
-    .pill.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .question-box {
-      background: linear-gradient(180deg, #f8fbff, #ffffff);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .label {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .question {
-      margin: 13px 0 8px;
-      font-size: clamp(25px, 5.4vw, 43px);
-      font-weight: 950;
-      letter-spacing: -0.04em;
-      color: var(--primary);
-      word-break: break-word;
-    }
-
-    .hint {
-      color: var(--muted);
+    .menu-card h2 {
       margin: 0;
+      color: var(--primary);
+      font-size: clamp(24px, 4vw, 32px);
+      letter-spacing: -0.04em;
+    }
+
+    .menu-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
       font-size: 15px;
     }
 
-    .answer-area {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    input, select {
-      width: 100%;
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      font-size: 18px;
-      outline: none;
-      transition: 0.2s;
-      background: white;
-    }
-
-    input:focus, select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(35, 64, 120, 0.1);
-    }
-
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .secondary {
-      background: #eef2ff;
-      color: var(--primary);
-    }
-
-    .secondary:hover {
-      background: #dfe7ff;
-      color: var(--primary-dark);
-    }
-
-    .danger-soft {
-      background: #fee2e2;
-      color: var(--danger);
-    }
-
-    .danger-soft:hover {
-      background: #fecaca;
-      color: var(--danger);
-    }
-
-    .feedback {
-      margin-top: 14px;
-      min-height: 48px;
-      border-radius: 16px;
-      padding: 13px 15px;
-      font-weight: 800;
-      display: none;
-      line-height: 1.5;
-    }
-
-    .feedback.show { display: block; }
-    .feedback.good { background: #dcfce7; color: var(--success); }
-    .feedback.bad { background: #fee2e2; color: var(--danger); }
-    .feedback.info { background: #fef3c7; color: var(--warning); }
-
-    .options {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .option {
-      width: 100%;
-      text-align: left;
-      background: #f8fafc;
-      color: var(--text);
-      border: 1px solid var(--border);
-      font-size: 16px;
+    .card-bottom {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
       align-items: center;
-      line-height: 1.35;
-    }
-
-    .option:hover {
-      background: var(--primary-soft);
       color: var(--primary);
+      font-weight: 950;
     }
 
-    .side-title {
-      margin: 0 0 12px;
+    .arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
       font-size: 20px;
-      letter-spacing: -0.02em;
     }
 
-    .progress-wrap { margin: 12px 0 18px; }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 7px;
-    }
-
-    .bar {
-      height: 12px;
-      background: #eef2f7;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary), #60a5fa);
-      border-radius: 999px;
-      transition: 0.25s;
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 8px;
-      max-height: 420px;
-      overflow: auto;
-      padding-right: 4px;
-    }
-
-    .mini-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      background: #f8fafc;
+    .info-card {
+      margin-top: 20px;
+      background: white;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-size: 14px;
-    }
-
-    .mini-item b { color: var(--primary); }
-    .tag { font-size: 12px; color: var(--muted); }
-
-    .tools {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .notice {
-      margin-top: 20px;
+      border-radius: var(--radius);
+      padding: 22px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.6;
+      box-shadow: 0 14px 35px rgba(17, 24, 39, 0.06);
     }
 
-    .search-box { margin: 8px 0 12px; }
-
-    .footer-card {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 14px;
+    .info-card strong {
+      color: var(--primary);
     }
 
-    .footer-card strong { color: var(--primary); }
-    .hidden { display: none !important; }
+    @media (max-width: 800px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
 
-    @media (max-width: 900px) {
-      .stats, .layout, .footer-card { grid-template-columns: 1fr; }
-      .hero { padding: 24px; }
-      .game-head { display: grid; }
-      .topbar { align-items: flex-start; }
+      .hero {
+        padding: 24px;
+      }
     }
 
     @media (max-width: 560px) {
-      .page, .topbar {
+      .topbar, .page {
         width: min(100% - 18px, 1120px);
       }
-      .hero { border-radius: 22px; }
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+
+      .contact-links {
+        width: 100%;
       }
-      .stat { padding: 14px; }
-      .stat strong { font-size: 24px; }
-      .card { padding: 16px; }
-      .actions { grid-template-columns: 1fr; }
-      .contact-links { width: 100%; }
-      .contact-link { flex: 1; text-align: center; }
+
+      .contact-link {
+        flex: 1;
+        text-align: center;
+      }
+
+      .hero {
+        border-radius: 22px;
+      }
+
+      .menu-card {
+        padding: 20px;
+        min-height: 230px;
+      }
     }
   </style>
 </head>
 <body>
   <section id="loginScreen" class="login-screen">
     <div class="login-card">
-      <div class="login-logo">AY</div>
-      <h1>AYDA Kelime Çalışması</h1>
+      <div class="logo">AY</div>
+      <h1>AYDA A2 Çalışma Alanı</h1>
       <p>
-        TELC A2 Schreiben Teil 1 form doldurma kelimeleri için hazırlanmış çalışma alanıdır.
-        Devam etmek için size verilen şifreyi giriniz.
+        TELC A2 Schreiben Teil 1 kelime ve form alıştırmalarına erişmek için size verilen şifreyi giriniz.
       </p>
+
       <div class="login-row">
         <input id="passwordInput" type="password" placeholder="Şifre" autocomplete="off" />
         <button onclick="checkPassword()">Giriş Yap</button>
       </div>
-      <div id="loginError" class="feedback bad" style="margin-top:14px;">Şifre hatalı. Lütfen tekrar deneyiniz.</div>
+
+      <div id="loginError" class="error">Şifre hatalı. Lütfen tekrar deneyiniz.</div>
+
       <div class="login-help">
         <span>Şifre bilgisi için AYDA ile iletişime geçebilirsiniz.</span>
         <a href="https://wa.me/905409122503" target="_blank" rel="noopener">WhatsApp: 0540 912 25 03</a>
@@ -571,115 +432,62 @@
     </div>
   </section>
 
-  <div id="app" class="hidden">
+  <div id="app" class="app hidden">
     <header class="topbar">
       <a class="top-brand" href="https://www.aydadil.com" target="_blank" rel="noopener">
         <span class="mini-logo">AY</span>
         <span>AYDA Dil Akademisi</span>
       </a>
+
       <nav class="contact-links">
         <a class="contact-link" href="https://www.aydadil.com" target="_blank" rel="noopener">Web Sitesi</a>
         <a class="contact-link" href="https://wa.me/905409122503" target="_blank" rel="noopener">WhatsApp</a>
         <a class="contact-link" href="https://www.instagram.com/ayda.dil/" target="_blank" rel="noopener">Instagram</a>
-        <button class="contact-link danger-soft" onclick="logout()" type="button">Çıkış</button>
+        <button class="contact-link logout" onclick="logout()" type="button">Çıkış</button>
       </nav>
     </header>
 
     <main class="page">
       <section class="hero">
-        <div class="brand"><span class="dot"></span> AYDA · TELC A2 Schreiben Teil 1</div>
-        <h1>Form doldurma kelimelerini oyunla öğren.</h1>
+        <div class="badge"><span class="dot"></span> TELC A2 Schreiben Teil 1</div>
+        <h1>Kelime çalışması ve form simülasyonu.</h1>
         <p>
-          TELC A2 Schreiben Teil 1 form doldurma bölümünde karşılaşılabilecek alan adlarını çalışmak için hazırlanmıştır.
-          Almanca alan adını gör, Türkçesini bil; sonra yönü değiştirip Türkçeden Almancaya tekrar et.
+          Bu alan, TELC A2 Schreiben Teil 1 form doldurma bölümünde gerekli kelimeleri öğrenmek ve sınav tarzı mini formlarla pratik yapmak için hazırlanmıştır.
         </p>
-        <div class="hero-actions">
-          <a class="hero-action" href="https://www.aydadil.com" target="_blank" rel="noopener">🌐 www.aydadil.com</a>
-          <a class="hero-action" href="https://wa.me/905409122503" target="_blank" rel="noopener">💬 WhatsApp: 0540 912 25 03</a>
-          <a class="hero-action" href="https://www.instagram.com/ayda.dil/" target="_blank" rel="noopener">📸 Instagram: @ayda.dil</a>
-        </div>
       </section>
 
-      <section class="stats">
-        <div class="stat"><span>Toplam Kelime</span><strong id="totalWords">0</strong></div>
-        <div class="stat"><span>Doğru</span><strong id="correctCount">0</strong></div>
-        <div class="stat"><span>Yanlış</span><strong id="wrongCount">0</strong></div>
-        <div class="stat"><span>Seri</span><strong id="streakCount">0</strong></div>
+      <section class="menu-grid">
+        <a class="menu-card" href="a2kelimeler.html">
+          <div>
+            <div class="icon">📚</div>
+            <h2>Kelime Çalış</h2>
+            <p>
+              Formlarda çıkan Almanca alan adlarını öğrenin. Yazarak çalışma, şıklı test ve kart modu ile tekrar yapabilirsiniz.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>a2kelimeler.html</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
+
+        <a class="menu-card" href="a2form.html">
+          <div>
+            <div class="icon">📝</div>
+            <h2>Form Çöz</h2>
+            <p>
+              Almanca senaryoları okuyup sınav tarzı mini formları doldurun. Benzer alanları ayırt etme ve doğru yere doğru bilgiyi yazma pratiği yapın.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>a2form.html</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
       </section>
 
-      <section class="layout">
-        <div class="card">
-          <div class="game-head">
-            <div>
-              <h2 class="side-title">Kelime Oyunu</h2>
-              <div class="mode-pills">
-                <button class="pill active" data-mode="write">Yazarak Bil</button>
-                <button class="pill" data-mode="choice">Şıklı Test</button>
-                <button class="pill" data-mode="flash">Kart Modu</button>
-              </div>
-            </div>
-            <button class="secondary" onclick="resetGame()">Sıfırla</button>
-          </div>
-
-          <div class="question-box">
-            <div class="label" id="questionLabel">Almanca alan adı</div>
-            <div class="question" id="questionText">Vorname</div>
-            <p class="hint" id="hintText">Türkçesini yaz.</p>
-          </div>
-
-          <div id="writeMode" class="answer-area">
-            <input id="answerInput" type="text" placeholder="Cevabı yaz: örn. adı" autocomplete="off" />
-            <div class="actions">
-              <button onclick="checkWrittenAnswer()">Kontrol Et</button>
-              <button class="secondary" onclick="showAnswer()">Cevabı Göster</button>
-            </div>
-          </div>
-
-          <div id="choiceMode" class="options hidden"></div>
-
-          <div id="flashMode" class="answer-area hidden">
-            <button onclick="showAnswer()">Kartı Çevir / Cevabı Göster</button>
-            <button class="secondary" onclick="nextQuestion()">Sonraki Kart</button>
-          </div>
-
-          <div id="feedback" class="feedback"></div>
-        </div>
-
-        <aside class="card">
-          <h2 class="side-title">Çalışma Durumu</h2>
-          <div class="progress-wrap">
-            <div class="progress-top">
-              <span>Başarı oranı</span>
-              <strong id="successRate">0%</strong>
-            </div>
-            <div class="bar"><div class="bar-fill" id="barFill"></div></div>
-          </div>
-
-          <div class="tools">
-            <button onclick="reverseDirection()">Soru Yönünü Değiştir</button>
-            <button class="secondary" onclick="shuffleWords()">Kelimeleri Karıştır</button>
-          </div>
-
-          <p class="notice">
-            Küçük harf/büyük harf ve Türkçe karakter farkları otomatik tolere edilir. Bazı kelimelerde birden fazla doğru cevap kabul edilir.
-          </p>
-
-          <h2 class="side-title" style="margin-top:20px;">Kelime Listesi</h2>
-          <input class="search-box" id="searchInput" type="text" placeholder="Listede ara..." oninput="renderWordList()" />
-          <div class="mini-list" id="wordList"></div>
-        </aside>
-      </section>
-
-      <section class="card footer-card">
-        <div>
-          <strong>AYDA Dil Akademisi</strong><br />
-          Online Almanca eğitimleri, TELC sınav hazırlığı ve süreç danışmanlığı.
-        </div>
-        <div class="contact-links">
-          <a class="contact-link" href="https://www.aydadil.com" target="_blank" rel="noopener">Web</a>
-          <a class="contact-link" href="https://wa.me/905409122503" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="contact-link" href="https://www.instagram.com/ayda.dil/" target="_blank" rel="noopener">Instagram</a>
-        </div>
+      <section class="info-card">
+        <strong>Not:</strong> Kelime çalışmasını bitirdikten sonra form çözme bölümüne geçmeniz önerilir. Çünkü sınavda yalnızca kelime bilmek değil, bilgiyi doğru form alanına yerleştirmek önemlidir.
       </section>
     </main>
   </div>
@@ -688,204 +496,26 @@
     /*
       ŞİFRE DEĞİŞTİRME ALANI
       İleride şifre değiştirmek için sadece aşağıdaki PASSWORDS listesini düzenleyin.
-      Örnek: "yenişifre" eklemek için listeye şu şekilde yazın: "yenişifre",
+      Örnek: const PASSWORDS = ["yenişifre", "a2"];
     */
     const PASSWORDS = ["160326", "180326", "a2"];
-
-    const words = [
-      { de: "Familienname", tr: ["Soyadı", "Soyad"] },
-      { de: "Nachname", tr: ["Soyadı", "Soyad"] },
-      { de: "Name", tr: ["Soyadı", "Ad soyad alanı", "Ad-soyad", "İsim"] },
-      { de: "Vorname", tr: ["Adı", "Ad", "İsim"] },
-      { de: "Straße", tr: ["Sokak", "Cadde", "Sokak cadde"] },
-      { de: "Hausnummer", tr: ["Kapı numarası", "Bina numarası", "Ev numarası"] },
-      { de: "Straße und Hausnummer", tr: ["Sokak cadde ve kapı numarası", "Sokak ve kapı numarası", "Cadde ve kapı numarası"] },
-      { de: "Straße und Hausnr.", tr: ["Sokak cadde ve kapı numarası", "Sokak ve kapı numarası", "Cadde ve kapı numarası"] },
-      { de: "Anschrift", tr: ["Adres"] },
-      { de: "Adresse", tr: ["Adres"] },
-      { de: "Wohnort", tr: ["İkamet yeri", "Şehir", "Yaşadığı yer"] },
-      { de: "Ständiger Wohnort", tr: ["Sürekli ikamet adresi", "Sürekli ikamet yeri"] },
-      { de: "Postleitzahl", tr: ["Posta kodu"] },
-      { de: "PLZ", tr: ["Posta kodu"] },
-      { de: "Ort", tr: ["Şehir", "Yer"] },
-      { de: "Stadt", tr: ["Şehir"] },
-      { de: "Land", tr: ["Ülke"] },
-      { de: "Postleitzahl und Ort", tr: ["Posta kodu ve şehir", "Posta kodu ve yer"] },
-      { de: "PLZ und Ort", tr: ["Posta kodu ve şehir", "Posta kodu ve yer"] },
-      { de: "PLZ, Ort/Land", tr: ["Posta kodu şehir ülke", "Posta kodu şehir / ülke", "Posta kodu, şehir, ülke"] },
-      { de: "Postleitzahl, Wohnort", tr: ["Posta kodu ikamet yeri", "Posta kodu ve ikamet yeri"] },
-      { de: "Straße/Postleitzahl/Ort", tr: ["Sokak posta kodu şehir", "Sokak, posta kodu, şehir"] },
-      { de: "Telefon", tr: ["Telefon", "Telefon numarası"] },
-      { de: "Tel.", tr: ["Telefon", "Telefon numarası"] },
-      { de: "Handy", tr: ["Cep telefonu", "Mobil telefon"] },
-      { de: "E-Mail", tr: ["E-posta", "Email", "Mail"] },
-      { de: "E-Mail-Adresse", tr: ["E-posta adresi", "Email adresi", "Mail adresi"] },
-      { de: "Geburtsdatum", tr: ["Doğum tarihi"] },
-      { de: "geb. am", tr: ["Doğum tarihi", "Doğduğu tarih"] },
-      { de: "Geburtsort", tr: ["Doğum yeri"] },
-      { de: "geb. in", tr: ["Doğum yeri", "Doğduğu yer"] },
-      { de: "Geburtsdatum/-ort", tr: ["Doğum tarihi doğum yeri", "Doğum tarihi / doğum yeri"] },
-      { de: "Alter", tr: ["Yaş"] },
-      { de: "Geschlecht", tr: ["Cinsiyet"] },
-      { de: "männlich", tr: ["Erkek"] },
-      { de: "weiblich", tr: ["Kadın"] },
-      { de: "Nationalität", tr: ["Milliyet"] },
-      { de: "Staatsangehörigkeit", tr: ["Vatandaşlık", "Uyruğu"] },
-      { de: "heute", tr: ["Bugün", "Şu an"] },
-      { de: "früher", tr: ["Eskiden", "Önceki", "Daha önce"] },
-      { de: "Familienstand", tr: ["Medeni durum"] },
-      { de: "ledig", tr: ["Bekar", "Bekâr"] },
-      { de: "verheiratet", tr: ["Evli"] },
-      { de: "Ehefrau", tr: ["Kadın eş", "Eş", "Karısı"] },
-      { de: "Ehemann", tr: ["Erkek eş", "Eş", "Kocası"] },
-      { de: "Kinder", tr: ["Çocuklar"] },
-      { de: "Kind", tr: ["Çocuk"] },
-      { de: "Sohn", tr: ["Erkek çocuk", "Oğul"] },
-      { de: "Tochter", tr: ["Kız çocuk", "Kız evlat"] },
-      { de: "Name der Ehefrau/Alter", tr: ["Eşin adı yaşı", "Eşin adı / yaşı", "Kadın eşin adı yaşı"] },
-      { de: "Name der Kinder/Alter", tr: ["Çocukların adı yaşı", "Çocukların adı / yaşı"] },
-      { de: "Beruf", tr: ["Meslek"] },
-      { de: "Berufswunsch", tr: ["İstenen meslek", "Hedeflenen meslek", "Meslek isteği"] },
-      { de: "Arbeitsstelle", tr: ["İş yeri", "Çalışma yeri"] },
-      { de: "Firma", tr: ["Şirket", "Firma"] },
-      { de: "Anschrift der Firma", tr: ["Şirket adresi", "Firma adresi"] },
-      { de: "Berufliche Angaben", tr: ["Mesleki bilgiler", "Meslek bilgileri"] },
-      { de: "Angestellte/r", tr: ["Çalışan", "Ücretli çalışan"] },
-      { de: "Selbstständige/r", tr: ["Serbest meslek sahibi", "Bağımsız çalışan"] },
-      { de: "Student/in", tr: ["Öğrenci"] },
-      { de: "Rentner/in", tr: ["Emekli"] },
-      { de: "arbeitslos", tr: ["İşsiz"] },
-      { de: "Monatlicher Verdienst", tr: ["Aylık kazanç", "Aylık maaş", "Maaş"] },
-      { de: "brutto", tr: ["Brüt"] },
-      { de: "Monatlicher Verdienst brutto", tr: ["Aylık brüt kazanç", "Aylık brüt maaş"] },
-      { de: "Kurs", tr: ["Kurs"] },
-      { de: "Für welchen Kurs interessieren Sie sich?", tr: ["Hangi kursla ilgileniyorsunuz", "Hangi kurs ile ilgileniyorsunuz"] },
-      { de: "Wann möchten Sie einen Kurs besuchen?", tr: ["Ne zaman kursa katılmak istiyorsunuz", "Kursa ne zaman katılmak istiyorsunuz"] },
-      { de: "Deutsch als Fremdsprache", tr: ["Yabancı dil olarak Almanca"] },
-      { de: "Anmeldung", tr: ["Kayıt", "Başvuru"] },
-      { de: "Anmeldung zu den Kursen", tr: ["Kurslara kayıt", "Kurs başvurusu"] },
-      { de: "Vorkenntnisse in Deutsch", tr: ["Almanca ön bilgisi", "Almanca ön bilgi"] },
-      { de: "Deutschkenntnisse", tr: ["Almanca bilgisi", "Almanca seviyesi"] },
-      { de: "Muttersprache", tr: ["Ana dil", "Anadil"] },
-      { de: "Fremdsprachen", tr: ["Yabancı diller"] },
-      { de: "Sprachpartner", tr: ["Dil partneri", "Erkek dil partneri"] },
-      { de: "Sprachpartnerin", tr: ["Kadın dil partneri", "Dil partneri"] },
-      { de: "Treffen", tr: ["Buluşma", "Görüşme"] },
-      { de: "Treffen in welcher Stadt", tr: ["Hangi şehirde buluşma", "Buluşma hangi şehirde"] },
-      { de: "Treffen wie oft", tr: ["Ne sıklıkla buluşma", "Buluşma ne sıklıkla"] },
-      { de: "Treffen wie lange", tr: ["Ne kadar süre buluşma", "Buluşma ne kadar süre"] },
-      { de: "einmal in der Woche", tr: ["Haftada bir kez", "Haftada bir"] },
-      { de: "eine Stunde", tr: ["Bir saat"] },
-      { de: "Hobby / Hobbys", tr: ["Hobi", "Hobiler"] },
-      { de: "Interessen", tr: ["İlgi alanları", "İlgiler"] },
-      { de: "Hobbys, Interessen", tr: ["Hobiler ilgi alanları", "Hobiler, ilgi alanları"] },
-      { de: "Freizeit", tr: ["Boş zaman"] },
-      { de: "sich interessieren für", tr: ["İlgilenmek", "İlgi duymak"] },
-      { de: "Antrag", tr: ["Başvuru", "Dilekçe", "Talep"] },
-      { de: "Antrag auf Ausstellung eines Visums", tr: ["Vize çıkarılması için başvuru", "Vize düzenlenmesi için başvuru"] },
-      { de: "Visum", tr: ["Vize"] },
-      { de: "Reisedokument", tr: ["Seyahat belgesi"] },
-      { de: "Reisepass", tr: ["Pasaport"] },
-      { de: "Typ", tr: ["Tür", "Belge türü", "Tip"] },
-      { de: "Nummer", tr: ["Numara", "No"] },
-      { de: "Aufenthalt", tr: ["Kalış", "Konaklama süresi", "Kalış süresi"] },
-      { de: "Datum des Aufenthalts", tr: ["Kalış tarihleri", "Konaklama tarihleri"] },
-      { de: "Einreise", tr: ["Ülkeye giriş", "Giriş"] },
-      { de: "Einreise am", tr: ["Giriş tarihi", "Ülkeye giriş tarihi"] },
-      { de: "Ausreise", tr: ["Ülkeden çıkış", "Çıkış"] },
-      { de: "Ausreise am", tr: ["Çıkış tarihi", "Ülkeden çıkış tarihi"] },
-      { de: "gültig ab", tr: ["Geçerlilik başlangıcı", "İtibaren geçerli"] },
-      { de: "gültig bis", tr: ["Geçerlilik bitiş tarihi", "Şu tarihe kadar geçerli"] },
-      { de: "Bestellformular", tr: ["Sipariş formu"] },
-      { de: "Abonnement / Abo", tr: ["Abonelik"] },
-      { de: "Jahres-Abo", tr: ["Yıllık abonelik"] },
-      { de: "Monats-Abo", tr: ["Aylık abonelik"] },
-      { de: "Wochen-Abo", tr: ["Haftalık abonelik"] },
-      { de: "Jahreskarte", tr: ["Yıllık kart"] },
-      { de: "Bankverbindung", tr: ["Banka bilgileri", "Banka bağlantısı"] },
-      { de: "Kontoinhaber", tr: ["Hesap sahibi"] },
-      { de: "Kontonummer", tr: ["Hesap numarası"] },
-      { de: "Konto-Nr.", tr: ["Hesap numarası"] },
-      { de: "Bankleitzahl", tr: ["Banka kodu"] },
-      { de: "BLZ", tr: ["Banka kodu"] },
-      { de: "Kreditinstitut", tr: ["Banka", "Finans kurumu"] },
-      { de: "Bank", tr: ["Banka"] },
-      { de: "IBAN", tr: ["IBAN"] },
-      { de: "BIC", tr: ["Banka kimlik kodu", "BIC"] },
-      { de: "Zahlungsart", tr: ["Ödeme şekli", "Ödeme türü"] },
-      { de: "Vorkasse", tr: ["Peşin ödeme", "Ön ödeme"] },
-      { de: "Lastschrift", tr: ["Otomatik ödeme", "Hesaptan çekim"] },
-      { de: "Krankenkasse", tr: ["Sağlık sigortası", "Sağlık kasası"] },
-      { de: "Anmeldung zur Sozialen Krankenkasse", tr: ["Sosyal sağlık sigortasına kayıt", "Sosyal sağlık kasasına kayıt"] },
-      { de: "Hilfsmittel", tr: ["Yardımcı araç", "Yardımcı gereç"] },
-      { de: "Hörgerät", tr: ["İşitme cihazı"] },
-      { de: "Brille", tr: ["Gözlük"] },
-      { de: "o.ä. / oder ähnlich", tr: ["Veya benzeri", "Ya da benzeri"] },
-      { de: "Persönliche Angaben", tr: ["Kişisel bilgiler"] },
-      { de: "Unterschrift", tr: ["İmza"] },
-      { de: "Ort, Datum", tr: ["Yer tarih", "Yer, tarih"] },
-      { de: "Datum", tr: ["Tarih"] },
-      { de: "männlich / weiblich", tr: ["Erkek kadın", "Erkek / kadın"] },
-      { de: "ab", tr: ["-den itibaren", "İtibaren"] },
-      { de: "wann", tr: ["Ne zaman"] },
-      { de: "wie oft", tr: ["Ne sıklıkla"] },
-      { de: "wie lange", tr: ["Ne kadar süre"] }
-    ];
-
-    let currentIndex = 0;
-    let mode = "write";
-    let reverse = false;
-    let correct = 0;
-    let wrong = 0;
-    let streak = 0;
-    let order = [...Array(words.length).keys()];
 
     const loginScreen = document.getElementById("loginScreen");
     const app = document.getElementById("app");
     const passwordInput = document.getElementById("passwordInput");
     const loginError = document.getElementById("loginError");
-    const totalWords = document.getElementById("totalWords");
-    const correctCount = document.getElementById("correctCount");
-    const wrongCount = document.getElementById("wrongCount");
-    const streakCount = document.getElementById("streakCount");
-    const questionText = document.getElementById("questionText");
-    const questionLabel = document.getElementById("questionLabel");
-    const hintText = document.getElementById("hintText");
-    const answerInput = document.getElementById("answerInput");
-    const feedback = document.getElementById("feedback");
-    const choiceMode = document.getElementById("choiceMode");
-    const writeMode = document.getElementById("writeMode");
-    const flashMode = document.getElementById("flashMode");
-    const wordList = document.getElementById("wordList");
-    const successRate = document.getElementById("successRate");
-    const barFill = document.getElementById("barFill");
-    const searchInput = document.getElementById("searchInput");
-
-    function normalize(text) {
-      return String(text)
-        .toLowerCase()
-        .trim()
-        .replaceAll("ı", "i")
-        .replaceAll("ğ", "g")
-        .replaceAll("ü", "u")
-        .replaceAll("ş", "s")
-        .replaceAll("ö", "o")
-        .replaceAll("ç", "c")
-        .replace(/[.,;:!?'"()\[\]{}\/\\-]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-    }
 
     function checkPassword() {
       const enteredPassword = passwordInput.value.trim();
-      const isValid = PASSWORDS.includes(enteredPassword);
-      if (!isValid) {
+
+      if (!PASSWORDS.includes(enteredPassword)) {
         loginError.classList.add("show");
         passwordInput.value = "";
         passwordInput.focus();
         return;
       }
-      localStorage.setItem("aydaKelimeOyunuAccess", "true");
+
+      localStorage.setItem("aydaA2MainAccess", "true");
       showApp();
     }
 
@@ -893,200 +523,21 @@
       loginScreen.classList.add("hidden");
       app.classList.remove("hidden");
       loginError.classList.remove("show");
-      setTimeout(() => answerInput.focus(), 120);
     }
 
     function logout() {
-      localStorage.removeItem("aydaKelimeOyunuAccess");
+      localStorage.removeItem("aydaA2MainAccess");
       app.classList.add("hidden");
       loginScreen.classList.remove("hidden");
       passwordInput.value = "";
       passwordInput.focus();
     }
 
-    function getCurrentWord() {
-      return words[order[currentIndex]];
-    }
-
-    function acceptedAnswers(word) {
-      return reverse ? [word.de] : word.tr;
-    }
-
-    function questionValue(word) {
-      return reverse ? word.tr[0] : word.de;
-    }
-
-    function updateQuestion() {
-      const word = getCurrentWord();
-      questionText.textContent = questionValue(word);
-      questionLabel.textContent = reverse ? "Türkçe anlam" : "Almanca alan adı";
-      hintText.textContent = reverse ? "Almancasını yaz." : "Türkçesini yaz.";
-      answerInput.value = "";
-      clearFeedback();
-      renderChoices();
-      if (mode === "write" && !app.classList.contains("hidden")) answerInput.focus();
-    }
-
-    function isAnswerCorrect(userText, answers) {
-      const user = normalize(userText);
-      if (!user) return false;
-      return answers.map(normalize).some(answer => {
-        return user === answer || answer.includes(user) || user.includes(answer);
-      });
-    }
-
-    function checkWrittenAnswer() {
-      const word = getCurrentWord();
-      const user = answerInput.value;
-      if (!normalize(user)) {
-        setFeedback("info", "Önce bir cevap yazmalısın.");
-        return;
-      }
-
-      const isCorrect = isAnswerCorrect(user, acceptedAnswers(word));
-      if (isCorrect) {
-        correct++;
-        streak++;
-        setFeedback("good", `Doğru! Cevap: ${acceptedAnswers(word)[0]}`);
-        setTimeout(nextQuestion, 650);
-      } else {
-        wrong++;
-        streak = 0;
-        setFeedback("bad", `Yanlış. Doğru cevap: ${acceptedAnswers(word).join(" / ")}`);
-      }
-      updateStats();
-    }
-
-    function renderChoices() {
-      choiceMode.innerHTML = "";
-      if (mode !== "choice") return;
-
-      const word = getCurrentWord();
-      const correctAnswer = acceptedAnswers(word)[0];
-      const pool = words
-        .filter(item => item.de !== word.de)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3)
-        .map(item => reverse ? item.de : item.tr[0]);
-
-      const options = [correctAnswer, ...pool].sort(() => Math.random() - 0.5);
-
-      options.forEach(option => {
-        const btn = document.createElement("button");
-        btn.className = "option";
-        btn.innerHTML = `<span>${option}</span><span>›</span>`;
-        btn.onclick = () => checkChoice(option);
-        choiceMode.appendChild(btn);
-      });
-    }
-
-    function checkChoice(option) {
-      const word = getCurrentWord();
-      const isCorrect = isAnswerCorrect(option, acceptedAnswers(word));
-      if (isCorrect) {
-        correct++;
-        streak++;
-        setFeedback("good", `Doğru! ${questionValue(word)} = ${acceptedAnswers(word)[0]}`);
-        updateStats();
-        setTimeout(nextQuestion, 650);
-      } else {
-        wrong++;
-        streak = 0;
-        setFeedback("bad", `Yanlış. Doğru cevap: ${acceptedAnswers(word).join(" / ")}`);
-        updateStats();
-      }
-    }
-
-    function showAnswer() {
-      const word = getCurrentWord();
-      setFeedback("info", `Cevap: ${acceptedAnswers(word).join(" / ")}`);
-    }
-
-    function nextQuestion() {
-      currentIndex = (currentIndex + 1) % order.length;
-      updateQuestion();
-    }
-
-    function setFeedback(type, message) {
-      feedback.className = `feedback show ${type}`;
-      feedback.textContent = message;
-    }
-
-    function clearFeedback() {
-      feedback.className = "feedback";
-      feedback.textContent = "";
-    }
-
-    function updateStats() {
-      totalWords.textContent = words.length;
-      correctCount.textContent = correct;
-      wrongCount.textContent = wrong;
-      streakCount.textContent = streak;
-      const total = correct + wrong;
-      const rate = total === 0 ? 0 : Math.round((correct / total) * 100);
-      successRate.textContent = `${rate}%`;
-      barFill.style.width = `${rate}%`;
-    }
-
-    function resetGame() {
-      correct = 0;
-      wrong = 0;
-      streak = 0;
-      currentIndex = 0;
-      updateStats();
-      updateQuestion();
-    }
-
-    function reverseDirection() {
-      reverse = !reverse;
-      updateQuestion();
-    }
-
-    function shuffleWords() {
-      order.sort(() => Math.random() - 0.5);
-      currentIndex = 0;
-      updateQuestion();
-    }
-
-    function renderWordList() {
-      const q = normalize(searchInput.value || "");
-      wordList.innerHTML = "";
-      words
-        .filter(word => !q || normalize(word.de).includes(q) || normalize(word.tr.join(" ")).includes(q))
-        .forEach(word => {
-          const item = document.createElement("div");
-          item.className = "mini-item";
-          item.innerHTML = `<div><b>${word.de}</b><br><span class="tag">${word.tr[0]}</span></div><span>📌</span>`;
-          wordList.appendChild(item);
-        });
-    }
-
-    document.querySelectorAll(".pill").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".pill").forEach(item => item.classList.remove("active"));
-        btn.classList.add("active");
-        mode = btn.dataset.mode;
-        writeMode.classList.toggle("hidden", mode !== "write");
-        choiceMode.classList.toggle("hidden", mode !== "choice");
-        flashMode.classList.toggle("hidden", mode !== "flash");
-        updateQuestion();
-      });
-    });
-
     passwordInput.addEventListener("keydown", event => {
       if (event.key === "Enter") checkPassword();
     });
 
-    answerInput.addEventListener("keydown", event => {
-      if (event.key === "Enter") checkWrittenAnswer();
-    });
-
-    shuffleWords();
-    renderWordList();
-    updateStats();
-    updateQuestion();
-
-    if (localStorage.getItem("aydaKelimeOyunuAccess") === "true") {
+    if (localStorage.getItem("aydaA2MainAccess") === "true") {
       showApp();
     } else {
       passwordInput.focus();
