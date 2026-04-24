@@ -288,7 +288,7 @@
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-top: 22px;
     }
@@ -327,7 +327,7 @@
     .menu-card h2 {
       margin: 0;
       color: var(--primary);
-      font-size: clamp(24px, 4vw, 32px);
+      font-size: clamp(22px, 3vw, 30px);
       letter-spacing: -0.04em;
     }
 
@@ -356,6 +356,7 @@
       display: grid;
       place-items: center;
       font-size: 20px;
+      flex: 0 0 auto;
     }
 
     .info-card {
@@ -373,7 +374,7 @@
       color: var(--primary);
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 980px) {
       .menu-grid {
         grid-template-columns: 1fr;
       }
@@ -414,7 +415,7 @@
       <div class="logo">AY</div>
       <h1>AYDA A2 Çalışma Alanı</h1>
       <p>
-        TELC A2 Schreiben Teil 1 kelime ve form alıştırmalarına erişmek için size verilen şifreyi giriniz.
+        TELC A2 Schreiben kelime, form ve mektup yazma alıştırmalarına erişmek için size verilen şifreyi giriniz.
       </p>
 
       <div class="login-row">
@@ -449,10 +450,10 @@
 
     <main class="page">
       <section class="hero">
-        <div class="badge"><span class="dot"></span> TELC A2 Schreiben Teil 1</div>
-        <h1>Kelime çalışması ve form simülasyonu.</h1>
+        <div class="badge"><span class="dot"></span> TELC A2 Schreiben</div>
+        <h1>Kelime, form ve mektup yazma çalışmaları.</h1>
         <p>
-          Bu alan, TELC A2 Schreiben Teil 1 form doldurma bölümünde gerekli kelimeleri öğrenmek ve sınav tarzı mini formlarla pratik yapmak için hazırlanmıştır.
+          Bu alan, TELC A2 Schreiben sınavına hazırlanmak için kelime çalışması, form doldurma ve mektup yazma alıştırmalarını bir arada sunar.
         </p>
       </section>
 
@@ -484,10 +485,24 @@
             <span class="arrow">›</span>
           </div>
         </a>
+
+        <a class="menu-card" href="a2schreiben1.html">
+          <div>
+            <div class="icon">✉️</div>
+            <h2>Schreiben Teil 2</h2>
+            <p>
+              TELC A2 Schreiben Teil 2 mektup yazma bölümüne yönelik örnek konularla yazma pratiği yapın. Uygun başlangıç, içerik ve kapanış ifadelerini çalışın.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>Mektup Yazma Alıştırması</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
       </section>
 
       <section class="info-card">
-        <strong>Not:</strong> Kelime çalışmasını bitirdikten sonra form çözme bölümüne geçmeniz önerilir. Çünkü sınavda yalnızca kelime bilmek değil, bilgiyi doğru form alanına yerleştirmek önemlidir.
+        <strong>Not:</strong> Önce kelime çalışması, ardından form çözme ve son olarak mektup yazma alıştırması yapılması önerilir. Böylece sınavda hem doğru kelimeyi kullanma hem de bilgiyi doğru şekilde yazıya aktarma pratiği gelişir.
       </section>
     </main>
   </div>
