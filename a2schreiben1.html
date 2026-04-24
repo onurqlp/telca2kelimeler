@@ -82,7 +82,7 @@
         <div class="mail-preview" id="mailPreview">Seçtiğiniz cümleler burada görünecek.</div>
         <div class="actions">
           <button onclick="checkMail()">Maili Kontrol Et</button>
-          <button class="secondary" onclick="showMailAnswer()">Cevapları Göster</button>
+          <button class="secondary" onclick="resetMailSelection()">Seçimi Temizle</button>
           <button class="secondary" onclick="nextMail()">Sonraki Mail</button>
         </div>
       </div>
@@ -234,9 +234,7 @@ function msg(type,text){$('feedback').className='feedback show '+type;$('feedbac
 function renderCard(){const t=currentTask();$('cardCounter').textContent=`${current+1} / ${tasks.length}`;$('cardTopic').textContent=t.topic;$('cardMeaning').textContent=t.meaning;$('cardSentence').textContent=t.sentence;$('cardUse').textContent=t.use}
 function renderMail(){const m=mails[mailIndex];selectedMail=[];$('mailCounter').textContent=`${mailIndex+1} / ${mails.length}`;$('mailTopic').textContent=m.topic;$('mailSituation').textContent=m.situation;$('mailInstruction').textContent=m.instruction;$('mailOptions').innerHTML='';$('mailPreview').textContent='Seçtiğiniz cümleler burada görünecek.';shuffle([...m.correct,...m.distractors]).forEach(line=>{const b=document.createElement('button');b.className='mail-line';b.textContent=line;b.onclick=()=>toggleMailLine(b,line);$('mailOptions').appendChild(b)});clearFeedback()}
 function toggleMailLine(btn,line){btn.classList.toggle('selected');if(btn.classList.contains('selected'))selectedMail.push(line);else selectedMail=selectedMail.filter(x=>x!==line);$('mailPreview').textContent=selectedMail.length?selectedMail.join('\n'):'Seçtiğiniz cümleler burada görünecek.'}
-function checkMail(){const m=mails[mailIndex];const needed=m.correct.filter(x=>!selectedMail.includes(x));const extra=selectedMail.filter(x=>!m.correct.includes(x));if(needed.length===0&&extra.length===0){correct++;msg('good','Sehr gut! Mail için doğru cümleleri seçtiniz.')}else{wrong++;showMailAnswer();msg('bad','Eksik veya gereksiz cümle var. Doğru cevap aşağıda gösterildi.')}updateStats()}
-function showMailAnswer(){const m=mails[mailIndex];selectedMail=[...m.correct];$('mailPreview').textContent=m.correct.join('
-');document.querySelectorAll('.mail-line').forEach(btn=>{if(m.correct.includes(btn.textContent)){btn.classList.add('selected')}else{btn.classList.remove('selected')}});msg('info','Doğru cevap aşağıda gösterildi. Bu cümleleri sırayla inceleyin.')}
+function checkMail(){const m=mails[mailIndex];const needed=m.correct.filter(x=>!selectedMail.includes(x));const extra=selectedMail.filter(x=>!m.correct.includes(x));if(needed.length===0&&extra.length===0){correct++;msg('good','Sehr gut! Mail için doğru cümleleri seçtiniz.')}else{wrong++;msg('bad','Eksik veya gereksiz cümle var. Cevapları gösterip kalıpları inceleyin.')}updateStats()}
 function resetMailSelection(){renderMail()}
 function nextMail(){mailIndex=(mailIndex+1)%mails.length;renderMail()}
 document.querySelectorAll('.tab').forEach(tab=>tab.onclick=()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');mode=tab.dataset.mode;$('sentenceMode').classList.toggle('hidden',mode!=='sentence');$('mailMode').classList.toggle('hidden',mode!=='mail');$('cardsMode').classList.toggle('hidden',mode!=='cards');clearFeedback();if(mode==='mail')renderMail();if(mode==='cards')renderCard()});
