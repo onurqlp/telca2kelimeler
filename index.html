@@ -164,11 +164,33 @@
       z-index: 2;
     }
 
+    .section-label {
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 950;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-label span {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      flex: 0 0 auto;
+    }
+
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 20px;
-      margin-top: 22px;
     }
 
     .menu-card {
@@ -178,7 +200,7 @@
       padding: 24px;
       box-shadow: 0 14px 35px rgba(17, 24, 39, 0.07);
       transition: 0.22s ease;
-      min-height: 280px;
+      min-height: 230px;
       display: grid;
       align-content: space-between;
       gap: 18px;
@@ -191,21 +213,21 @@
     }
 
     .icon {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
       border-radius: 20px;
       background: var(--primary-soft);
       color: var(--primary);
       display: grid;
       place-items: center;
-      font-size: 30px;
+      font-size: 28px;
       margin-bottom: 12px;
     }
 
     .menu-card h2 {
       margin: 0;
       color: var(--primary);
-      font-size: clamp(22px, 2.4vw, 28px);
+      font-size: clamp(21px, 2.2vw, 27px);
       letter-spacing: -0.04em;
       line-height: 1.08;
     }
@@ -213,7 +235,7 @@
     .menu-card p {
       margin: 10px 0 0;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
       font-size: 15px;
     }
 
@@ -240,7 +262,7 @@
     }
 
     .info-card {
-      margin-top: 20px;
+      margin-top: 24px;
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -284,7 +306,11 @@
 
       .menu-card {
         padding: 20px;
-        min-height: 230px;
+        min-height: 210px;
+      }
+
+      .section-label {
+        font-size: 16px;
       }
     }
   </style>
@@ -306,12 +332,67 @@
 
     <main class="page">
       <section class="hero">
-        <div class="badge"><span class="dot"></span> TELC A2 Schreiben · Sprechen · Lesen</div>
-        <h1>Kelime, form, mektup, konuşma ve okuma çalışmaları.</h1>
+        <div class="badge"><span class="dot"></span> TELC A2 Sınav Hazırlık Alanı</div>
+        <h1>A2 sınav bölümlerine göre çalışma sayfası.</h1>
         <p>
-          Bu alan, TELC A2 sınavına hazırlanmak için Schreiben bölümündeki kelime, form doldurma ve mektup yazma alıştırmalarını; Sprechen bölümündeki soru-cevap ve birlikte planlama çalışmalarını; ayrıca Lesen Teil 1 ve Lesen Teil 2 okuma alıştırmalarını bir arada sunar.
+          Çalışmalar sınav sırasına göre düzenlendi: önce Lesen, ardından Schreiben ve son olarak Sprechen. 
+          Her bölümde kısa, pratik ve sınav odaklı alıştırmalar bulunur.
         </p>
       </section>
+
+      <div class="section-label">
+        <span>📖</span>
+        <div>1. Lesen · Okuma Bölümü</div>
+      </div>
+
+      <section class="menu-grid">
+        <a class="menu-card" href="a2lesenteil1.html">
+          <div>
+            <div class="icon">🧭</div>
+            <h2>Lesen Teil 1</h2>
+            <p>
+              İlan, başlık ve bölüm eşleştirme alıştırmaları.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>Lesen Teil 1</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
+
+        <a class="menu-card" href="a2lesenteil2.html">
+          <div>
+            <div class="icon">📄</div>
+            <h2>Lesen Teil 2</h2>
+            <p>
+              Kısa metinlerden doğru bilgiyi bulma çalışmaları.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>Lesen Teil 2</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
+
+        <a class="menu-card" href="a2lesenteil3.html">
+          <div>
+            <div class="icon">🔎</div>
+            <h2>Lesen Teil 3</h2>
+            <p>
+              Anzeige A–H ve X seçeneğiyle eşleştirme alıştırmaları.
+            </p>
+          </div>
+          <div class="card-bottom">
+            <span>Lesen Teil 3</span>
+            <span class="arrow">›</span>
+          </div>
+        </a>
+      </section>
+
+      <div class="section-label">
+        <span>✍️</span>
+        <div>2. Schreiben · Yazma Bölümü</div>
+      </div>
 
       <section class="menu-grid">
         <a class="menu-card" href="a2kelimeler.html">
@@ -319,11 +400,11 @@
             <div class="icon">📚</div>
             <h2>Kelime Çalış</h2>
             <p>
-              Formlarda çıkan Almanca alan adlarını öğrenin. Yazarak çalışma, şıklı test ve kart modu ile tekrar yapabilirsiniz.
+              Form ve yazma bölümünde çıkan temel kelimeler.
             </p>
           </div>
           <div class="card-bottom">
-            <span>a2kelimeler.html</span>
+            <span>Kelime</span>
             <span class="arrow">›</span>
           </div>
         </a>
@@ -333,11 +414,11 @@
             <div class="icon">📝</div>
             <h2>Form Çöz</h2>
             <p>
-              Almanca senaryoları okuyup sınav tarzı mini formları doldurun. Benzer alanları ayırt etme ve doğru yere doğru bilgiyi yazma pratiği yapın.
+              TELC A2 form doldurma pratiği.
             </p>
           </div>
           <div class="card-bottom">
-            <span>a2form.html</span>
+            <span>Form</span>
             <span class="arrow">›</span>
           </div>
         </a>
@@ -347,25 +428,32 @@
             <div class="icon">✉️</div>
             <h2>Schreiben Teil 2</h2>
             <p>
-              TELC A2 Schreiben Teil 2 mektup yazma bölümüne yönelik örnek konularla yazma pratiği yapın. Uygun başlangıç, içerik ve kapanış ifadelerini çalışın.
+              Kısa mektup ve e-posta yazma alıştırmaları.
             </p>
           </div>
           <div class="card-bottom">
-            <span>Mektup Yazma Alıştırması</span>
+            <span>Mektup</span>
             <span class="arrow">›</span>
           </div>
         </a>
+      </section>
 
+      <div class="section-label">
+        <span>💬</span>
+        <div>3. Sprechen · Konuşma Bölümü</div>
+      </div>
+
+      <section class="menu-grid">
         <a class="menu-card" href="sprechenteil2.html">
           <div>
             <div class="icon">💬</div>
             <h2>Sprechen Teil 2</h2>
             <p>
-              TELC A2 konuşma sınavının 2. bölümüne yönelik soru sorma ve cevaplama alıştırmaları yapın. Partnerli konuşma pratiği için temel soru-cevap kalıplarını çalışın.
+              Soru sorma ve cevaplama pratiği.
             </p>
           </div>
           <div class="card-bottom">
-            <span>Soru Sorma ve Cevaplama</span>
+            <span>Soru-Cevap</span>
             <span class="arrow">›</span>
           </div>
         </a>
@@ -375,46 +463,19 @@
             <div class="icon">🤝</div>
             <h2>Sprechen Teil 3</h2>
             <p>
-              TELC A2 konuşma sınavının 3. bölümüne yönelik birlikte planlama alıştırmaları yapın. Öneri sunma, kabul etme, reddetme ve ortak karar verme kalıplarını çalışın.
+              Birlikte planlama ve karar verme çalışmaları.
             </p>
           </div>
           <div class="card-bottom">
-            <span>Birlikte Planlama Alıştırması</span>
-            <span class="arrow">›</span>
-          </div>
-        </a>
-
-        <a class="menu-card" href="a2lesenteil1.html">
-          <div>
-            <div class="icon">🧭</div>
-            <h2>Lesen Teil 1</h2>
-            <p>
-              TELC A2 Lesen Teil 1 bölümüne yönelik ilan, yönlendirme ve bölüm eşleştirme alıştırmaları yapın. Doğru başlığı/bölümü bulma, cevap kontrolü ve açıklamalı çözüm pratiği içerir.
-            </p>
-          </div>
-          <div class="card-bottom">
-            <span>Lesen Teil 1 Alıştırmaları</span>
-            <span class="arrow">›</span>
-          </div>
-        </a>
-
-        <a class="menu-card" href="a2lesenteil2.html">
-          <div>
-            <div class="icon">📖</div>
-            <h2>Lesen Teil 2</h2>
-            <p>
-              TELC A2 Lesen Teil 2 bölümüne yönelik okuma anlama alıştırmaları yapın. Kısa metinleri okuyup doğru bilgiyi bulma ve soruları cevaplama pratiği yapabilirsiniz.
-            </p>
-          </div>
-          <div class="card-bottom">
-            <span>Lesen Teil 2 Alıştırmaları</span>
+            <span>Planlama</span>
             <span class="arrow">›</span>
           </div>
         </a>
       </section>
 
       <section class="info-card">
-        <strong>Not:</strong> Önce kelime çalışması, ardından form çözme, mektup yazma, konuşma ve okuma alıştırmaları yapılması önerilir. Lesen Teil 1’de doğru bölüm/başlık eşleştirme; Lesen Teil 2’de ise metinden doğru bilgiyi bulma pratiği yapılır. Böylece sınavda bilgiyi hızlı bulma, doğru yorumlama ve uygun cevap verme becerisi gelişir.
+        <strong>Önerilen sıra:</strong> Önce Lesen alıştırmalarıyla sınavdaki bilgi bulma mantığını çalışın. 
+        Ardından Schreiben bölümünde kelime, form ve mektup pratiği yapın. Son olarak Sprechen bölümünde soru-cevap ve birlikte planlama çalışmalarıyla konuşma sınavına hazırlanın.
       </section>
     </main>
   </div>
